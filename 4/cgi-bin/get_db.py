@@ -48,10 +48,9 @@ try:
         print(f'<li>{row}</li>')
 
     print('''
-
                     </ul>
                 <form action="../cgi-bin/sql_to_xml.py">
-                    <input type="submit" class="btn btn-success" value="Сгенерировать отчёт по вину в xml">
+                    <input type="submit" class="btn btn-success" value="Сгенерировать отчёт по песням в xml">
                 </form>
     ''')
 except Exception:
