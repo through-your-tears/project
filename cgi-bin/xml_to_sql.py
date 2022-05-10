@@ -1,10 +1,10 @@
 import cgitb
 import sqlite3
 
-from adapter import import_from_file
+from adapter import import_from_xml
 from db import init_db, sqlite_connection
 
-PATH = 'wines.xml'
+PATH = 'songs.xml'
 
 cgitb.enable()
 init_db()
@@ -12,11 +12,11 @@ init_db()
 
 @sqlite_connection
 def xml_to_sql(con: sqlite3.Connection):
-    rows = import_from_file(PATH)
+    rows = import_from_xml(PATH)
     ins = []
     for row in rows:
         a = []
-        for value in row.values():
+        for value in row:
             try:
                 a.append(int(value))
             except ValueError:
@@ -25,7 +25,7 @@ def xml_to_sql(con: sqlite3.Connection):
     # con.row_factory = sqlite3.Row
     cur = con.cursor()
     cur.executemany("""
-        INSERT INTO WINES (WINE_ID, WINE_EXTRACT, SWEETNESS_ID, WINE_GRADE_ID, COUNTRY_ID, DESCRIPTION) VALUES (?, ?, ?, ?, ?, ?);
+        INSERT INTO SONGS (SONG_ID, SONG_NAME, SONG_LENGTH, ARTIST_ID, ALBUM_ID) VALUES (?, ?, ?, ?, ?);
     """, ins)
 
 

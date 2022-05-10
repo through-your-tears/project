@@ -1,18 +1,19 @@
 import sqlite3
+import cgitb
 
-from adapter import export_to_file
+from adapter import export_to_xml
 from db import sqlite_connection
 
-PATH = 'wines.xml'
+PATH = 'songs.xml'
 
+cgitb.enable()
 
 @sqlite_connection
 def sql_to_xml(con: sqlite3.Connection):
-    con.row_factory = sqlite3.Row
     cur = con.cursor()
-    cur.execute("select * from wines;")
-    rows = [dict(row) for row in cur.fetchall()]
-    export_to_file(rows, PATH)
+    cur.execute("select * from songs;")
+    rows = cur.fetchall()
+    export_to_xml(rows, PATH)
 
 
 sql_to_xml()
