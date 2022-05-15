@@ -1,0 +1,40 @@
+{% extends "pages/base.html" %}
+{% block title %} Страница про архитектуру {% endblock %}
+{% block content %}
+    <h1>Архитекторы</h1>
+    <ul>
+    {% for arch in architectors %}
+        <li>
+            <h2>{{ arch.name }}</h2>
+            <p>{{ arch.bio }}</p>
+            <a href="/architector/{{arch.id}}" class="btn btn-success">Посмотреть страницу архитектора</a>
+        </li>
+    {% endfor %}
+        <br>
+        <a href="{% url 'add_architector' %}" class="btn btn-warning">Добавить архитектора</a>
+    </ul>
+
+    <h1>Стили архитектуры</h1>
+    <ul>
+    {% for style in styles %}
+        <li>
+            <h2>{{ style.name }}</h2>
+            <p>{{ style.descr }}</p>
+            <a href="/style/{{style.id}}" class="btn btn-success">Посмотреть страницу стиля</a>
+        </li>
+    {% endfor %}
+        <br>
+        <a href="{% url 'add_style' %}" class="btn btn-warning">Добавить стиль</a>
+    </ul>
+    <h1>Строения</h1>
+    <ul>
+    {% for b in buildings %}
+        <li>
+            <h2>{{ b.name }}</h2>
+            <p>{{ b.architector }}, {{b.style}}</p>
+        </li>
+    {% endfor %}
+        <br>
+        <a href="{% url 'add_building' %}" class="btn btn-warning">Добавить строение</a>
+    </ul>
+{% endblock %}

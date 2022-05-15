@@ -1,0 +1,16 @@
+{% extends "pages/base.html" %}
+{% block title %} {{ album.name }} {% endblock %}
+{% block content %}
+<h1>
+    {{ album.name }}
+</h1>
+<p>
+    {{ album.number }}, {{ album.artist }}
+</p>
+<h1>Изменить альбом</h1>
+<form method="post" action="">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button class="btn btn-success" type="submit">Изменить</button>
+</form>
+{% endblock %}
