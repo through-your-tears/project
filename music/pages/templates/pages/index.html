@@ -1,37 +1,44 @@
 {% extends "pages/base.html" %}
-{% block title %} Страница про архитектуру {% endblock %}
+{% block title %} Страница про музыка {% endblock %}
 {% block content %}
-    <h1>Архитекторы</h1>
+    <h1>Страны</h1>
     <ul>
-    {% for arch in architectors %}
+        {% for country in countries %}
+            <li>{{ country }}</li>
+        {% endfor %}
+    </ul>
+    <h1>Артисты</h1>
+    <ul>
+    {% for art in artists %}
         <li>
-            <h2>{{ arch.name }}</h2>
-            <p>{{ arch.bio }}</p>
-            <a href="/architector/{{arch.id}}" class="btn btn-success">Посмотреть страницу архитектора</a>
+            <h2>{{ art.name }}</h2>
+            <p>{{ art.country }}</p>
+            <a href="/artist/{{art.id}}" class="btn btn-success">Посмотреть страницу артиста</a>
         </li>
     {% endfor %}
         <br>
-        <a href="{% url 'add_architector' %}" class="btn btn-warning">Добавить архитектора</a>
+        <a href="{% url 'add_artist' %}" class="btn btn-warning">Добавить архитектора</a>
     </ul>
-
-    <h1>Стили архитектуры</h1>
+    <h1>Альбом</h1>
     <ul>
-    {% for style in styles %}
+    {% for album in albums %}
         <li>
-            <h2>{{ style.name }}</h2>
-            <p>{{ style.descr }}</p>
-            <a href="/style/{{style.id}}" class="btn btn-success">Посмотреть страницу стиля</a>
+            <h2>{{ album.name }}</h2>
+            <p>Кол-во песен: {{ album.number }}</p>
+            <p>Артист: {{ album.artist }}</p>
+            <a href="/album/{{album.id}}" class="btn btn-success">Посмотреть страницу стиля</a>
         </li>
     {% endfor %}
         <br>
-        <a href="{% url 'add_style' %}" class="btn btn-warning">Добавить стиль</a>
+        <a href="{% url 'add_album' %}" class="btn btn-warning">Добавить стиль</a>
     </ul>
-    <h1>Строения</h1>
+    <h1>Музыка</h1>
     <ul>
-    {% for b in buildings %}
+    {% for s in songs %}
         <li>
-            <h2>{{ b.name }}</h2>
-            <p>{{ b.architector }}, {{b.style}}</p>
+            <h2>{{ s.name }}</h2>
+            <p>{{ s.artist }}, {{ s.album }}</p>
+            <p>Длительность - {{ s.length }}</p>
         </li>
     {% endfor %}
         <br>
